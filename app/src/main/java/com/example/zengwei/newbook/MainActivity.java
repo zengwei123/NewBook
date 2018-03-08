@@ -9,24 +9,31 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.zengwei.newbook.JSONModel.Search;
 import com.example.zengwei.newbook.MyAnimation.MyAminationSetControl;
 import com.example.zengwei.newbook.MyAnimation.MyAnimListener;
 import com.example.zengwei.newbook.Recycler.MyRecycler;
 import com.example.zengwei.newbook.Recycler.RecyclerItemListener;
+import com.example.zengwei.newbook.Util.JsonUtil;
 import com.example.zengwei.newbook.Util.MyAlert;
 import com.example.zengwei.newbook.Util.MyAlertListener;
+import com.example.zengwei.newbook.Util.NetworkRequestUtil;
+import com.example.zengwei.newbook.Util.NetworkRequestUtilListener;
 import com.yalantis.phoenix.PullToRefreshView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     private MyRecycler myRecycler;
 
     private AlertDialog.Builder builder;
-
     private int itemid;  //删除的数据id
 
     private ImageView loupe;
@@ -51,24 +57,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.index_activity);
+        ControlListener();
+        init();
         //透明通知栏目
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         getControl();
-        ControlListener();
-        init();
-        mPullToRefreshView = (PullToRefreshView) findViewById(R.id.pull_to_refresh);
-        mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mPullToRefreshView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        //三秒后将下拉刷新的状态变为刷新完成
-                        mPullToRefreshView.setRefreshing(false);
-                    }
-                }, 1000);
-            }
-        });
+
+
+
     }
 
     /**
@@ -89,11 +85,58 @@ public class MainActivity extends AppCompatActivity {
         //搜索栏动画特效
         animation2=AnimationUtils.loadAnimation(this, R.anim.loupe_edit);
         name= (TextView) findViewById(R.id.name);
+        mPullToRefreshView = (PullToRefreshView) findViewById(R.id.pull_to_refresh);
     }
     /**
      * 单独的事件控件监听
      */
     private void ControlListener(){
+
+        //下拉刷新
+        mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPullToRefreshView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //三秒后将下拉刷新的状态变为刷新完成
+                        mPullToRefreshView.setRefreshing(false);
+                    }
+                }, 1000);
+            }
+        });
+
+        //搜索框
+        loupe_edit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    try {
+                        String bookname=loupe_edit.getText().toString();
+                        NetworkRequestUtil.sendRequestWithOkHttp("http://novel.juhe.im/search?keyword="+bookname,
+                                new NetworkRequestUtilListener() {
+                                    @Override
+                                    public void getJsonString(String str) {
+                                        Log.d("zeng",str);
+//                               Intent resultIntent = new Intent();
+//                               Bundle bundle = new Bundle();
+//                               bundle.putString("str",str);
+//                               resultIntent.putExtras(bundle);
+                                        List<Search> searcnList= JsonUtil.jsonJX(str);
+                                        for(Search s:searcnList){
+                                            Log.d("zeng",s.toString());
+                                        }
+                                    }
+                                });
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                return false;
+            }
+
+        });
+
         //滑动事件监听
         drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
