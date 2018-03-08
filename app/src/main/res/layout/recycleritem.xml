@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:background="#ffffff"
+              android:orientation="horizontal"
+            android:layout_width="match_parent"
+              android:id="@+id/itemLinear"
+            android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="6dp"
+        android:background="#ffffff"
+        android:elevation="6dp">
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="45dp"
+            android:layout_height="65dp"
+            android:src="@drawable/ic_action"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/img"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/bookname"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="《永夜君王》"
+                android:textColor="@color/bookColor"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/seal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="第一章 绯色之夜"
+                android:textColor="@color/bookColor"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/butlinear"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:visibility="invisible">
+            <Button
+                android:id="@+id/fatup"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:text="养肥"
+                android:background="@drawable/fatup_button"/>
+            <Button
+                android:id="@+id/delete"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:text="删除"
+                android:background="@drawable/delete_button" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

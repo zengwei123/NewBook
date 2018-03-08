@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:background="#ffffff"
+              android:id="@+id/drawer"
+              android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        android:id="@+id/Linera"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+       <android.support.v7.widget.Toolbar
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:id="@+id/toolbar">
+           <ImageView
+               android:id="@+id/menu"
+               android:src="@drawable/ic_action"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"/>
+       </android.support.v7.widget.Toolbar>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+            <TextView
+                android:id="@+id/name"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textColor="@color/bookColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginLeft="50dp"
+                android:text="书籍"/>
+            <EditText
+                android:id="@+id/loupe_edit"
+                android:hint="you Love"
+                android:background="@drawable/edittext"
+                android:textColorHint="@color/bookColor"
+                android:textColor="@color/bookColor"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:inputType="text"
+                android:maxLines="1"
+                android:layout_width="wrap_content"
+                android:paddingLeft="10dp"
+                android:visibility="gone"
+                android:layout_marginRight="15dp"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:id="@+id/loupe"
+                android:src="@drawable/ic_loupe"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <View
+            android:layout_marginTop="10dp"
+            android:background="#66666666"
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"/>
+
+        <com.yalantis.phoenix.PullToRefreshView
+            android:id="@+id/pull_to_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvsb"
+                android:overScrollMode="never"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </com.yalantis.phoenix.PullToRefreshView>
+    </LinearLayout>
+
+    <fragment
+        android:id="@+id/cehua"
+        android:name="com.example.zengwei.newbook.Fragment.MyFragment"
+        android:layout_gravity="start|left"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</android.support.v4.widget.DrawerLayout>
