@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="com.android.support:recyclerview-v7-25.3.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../gradle-3.3/caches/transforms-1/files-1.1/recyclerview-v7-25.3.1.aar/b253cf45af3e58f1c91a42e6bbd9c6ab/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../gradle-3.3/caches/transforms-1/files-1.1/recyclerview-v7-25.3.1.aar/b253cf45af3e58f1c91a42e6bbd9c6ab/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Library/Android/sdk/extras/android/m2repository/com/android/support/recyclerview-v7/25.3.1/recyclerview-v7-25.3.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
