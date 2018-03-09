@@ -5,6 +5,8 @@ package com.example.zengwei.newbook.MyAnimation;
  */
 
 public interface MyAnimListener {
+    //显示输入框
     void MyAnimListenerstart();
+    //隐藏输入框
     void MyAnimListenerend();
 }

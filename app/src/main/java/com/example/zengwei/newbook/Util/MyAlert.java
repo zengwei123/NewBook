@@ -13,12 +13,14 @@ public class MyAlert  {
     public AlertDialog.Builder setMyAlert(AlertDialog.Builder builder, String title, String Message, final MyAlertListener mal){
         builder.setTitle(title);
         builder.setMessage(Message);
+        //取消按钮
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Log.d("zeng","取消");
             }
         });
+        //确定按钮
         builder.setNeutralButton("确定",new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -27,8 +29,5 @@ public class MyAlert  {
             }
         });
         return builder;
-        /**
-         * dsaasdsadasdasadsa
-         */
     }
 }

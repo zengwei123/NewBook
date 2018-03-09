@@ -87,6 +87,7 @@ public class MyRecycler extends RecyclerView.Adapter<MyRecycler.MyViewHolder>{
                 recyclerItemListener.DeleteAlertShow(position);
             }
         });
+        //养肥按钮
         holder.fatup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

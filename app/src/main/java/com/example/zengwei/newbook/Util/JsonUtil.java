@@ -1,5 +1,6 @@
 package com.example.zengwei.newbook.Util;
 
+import com.example.zengwei.newbook.JSONModel.Detail;
 import com.example.zengwei.newbook.JSONModel.Search;
 
 import org.json.JSONArray;
@@ -14,10 +15,11 @@ import java.util.List;
  */
 
 public class JsonUtil {
-
-
+    /**
+     * 书籍搜索解析
+     */
     private static List<Search> searchList;
-    public static List<Search> jsonJX(String resultString) {
+    public static List<Search> JsonSearch(String resultString) {
         searchList=new ArrayList<Search>();
         //判断数据是空
         if (resultString != null) {
@@ -40,25 +42,50 @@ public class JsonUtil {
                             String lastChapter = object.getString("lastChapter");
                             Search search=new Search(_id,title,cat,author,cover,lastChapter);
                             searchList.add(search);
-//                            Intent resultIntent = new Intent();
-//                            Bundle bundle = new Bundle();
-//                            bundle.putString("result", );
-//                            bundle.putString("asset_name", asset_name);
-//                            bundle.putString("reason_content", reason_content);
-//                            resultIntent.putExtras(bundle);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
-
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
         return searchList;
-
-
     }
 
+
+    /**
+     * 书籍详情解析
+     */
+    private static Detail detail;
+    public static Detail Jsondetail(String resultString){
+        try {
+            if(resultString!=null){
+                JSONObject jsonObject=new JSONObject(resultString);
+                if(jsonObject.getString("message").equals("ok")){
+                    JSONObject jsonObject1=jsonObject.getJSONObject("data");
+                    detail=new Detail(
+                            jsonObject1.getString("_id"),
+                            jsonObject1.getString("title"),
+                            jsonObject1.getString("cover"),
+                            jsonObject1.getString("longIntro"),
+                            jsonObject1.getString("author"),
+                            jsonObject1.getString("majorCate"),
+                            jsonObject1.getString("minorCate"),
+                            jsonObject1.getString("updated"),
+                            jsonObject1.getString("lastChapter"),
+                            jsonObject1.getInt("wordCount"),
+                            jsonObject1.getJSONObject("rating").getDouble("score"),
+                            jsonObject1.getDouble("retentionRatio"),
+                            jsonObject1.getInt("serializeWordCount"),
+                            jsonObject1.getBoolean("isSerial")
+                            );
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return  detail;
+    }
 }

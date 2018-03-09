@@ -3,45 +3,64 @@
     android:layout_width="match_parent"
     android:background="#FDFDFD"
     android:layout_height="match_parent">
-    <ImageView
-        android:id="@+id/fanhui"
-        android:src="@mipmap/fanhui"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:id="@+id/fanhuilinear"
+        android:background="@color/detaillbook_but"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/fanhui"
+            android:src="@drawable/fanhui"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/fenxiang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/fenxiang" />
+    </RelativeLayout>
+
     <LinearLayout
+        android:orientation="horizontal"
         android:id="@+id/linear"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        android:layout_height="35dp"
+        android:layout_marginBottom="3dp"
+        android:layout_alignParentBottom="true">
+
         <Button
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="添加书架"
-            />
+            style="@style/detail_but"
+            android:text="添加书架" />
+
         <Button
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="试读书籍"
-            />
+            android:id="@+id/Trial_reading"
+            style="@style/detail_but"
+            android:text="试读书籍" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/linear"
-        android:layout_below="@+id/fanhui"
+        android:layout_below="@+id/fanhuilinear"
         android:orientation="vertical">
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="180dp">
+            android:layout_height="190dp">
 
             <ImageView
+                android:id="@+id/cover"
                 android:layout_width="150dp"
+                android:padding="3dp"
                 android:layout_height="match_parent"
                 android:src="@mipmap/book" />
 
@@ -51,53 +70,70 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="书名"
-                    style="@style/detail" />
+                    android:id="@+id/title"
+                    style="@style/detail_text" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="作者"
-                    style="@style/detail" />
+                    android:id="@+id/author"
+                    android:textColor="@color/detaillbook_author"
+                    style="@style/detail_text" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/majorCate"
+                        android:background="@drawable/detaillbook_leibie"
+                        android:layout_marginRight="5dp"
+                        style="@style/detail_text" />
+                    <TextView
+                        android:id="@+id/minorCate"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/detaillbook_leibie"
+                        style="@style/detail_text" />
+                </LinearLayout>
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="类别"
-                    style="@style/detail" />
-
+                    android:id="@+id/wordCount"
+                    android:textColor="#828282"
+                    style="@style/detail_text" />
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="最近更新的章节"
-                    style="@style/detail" />
-
+                    android:id="@+id/score"
+                    android:textColor="#828282"
+                    style="@style/detail_text" />
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="更新时间"
-                    style="@style/detail" />
+                    android:id="@+id/retentionRatio"
+                    android:textColor="#828282"
+                    style="@style/detail_text" />
+                <TextView
+                    android:id="@+id/serializeWordCount"
+                    android:textColor="#828282"
+                    style="@style/detail_text" />
             </LinearLayout>
         </LinearLayout>
+            <TextView
+                android:id="@+id/updated"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                style="@style/detail_text" />
+            <TextView
+                android:id="@+id/lastChapter"
+                android:paddingLeft="10dp"
+                style="@style/detail_text" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="简介"
-            android:paddingTop="10dp"
-            android:paddingLeft="10dp"
-            style="@style/detail" />
+            <TextView
+                android:layout_width="match_parent"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:text="简介"
+                style="@style/detail_text" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="         简介阿萨德的多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多
-            阿萨德啊是的阿萨德撒的点点滴滴多多多多多多多阿萨德 撒的"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            style="@style/detail" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/longIntro"
+                android:textColor="#828282"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                style="@style/detail_text" />
+         </LinearLayout>
 </RelativeLayout>
 

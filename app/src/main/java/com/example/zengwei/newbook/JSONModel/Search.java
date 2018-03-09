@@ -1,6 +1,7 @@
 package com.example.zengwei.newbook.JSONModel;
 
 /**
+ * 搜索书籍对象
  * Created by zengwei on 2018/3/6.
  */
 
@@ -32,12 +33,12 @@ public class Search {
                 ", lastChapter='" + lastChapter + '\'' +
                 '}';
     }
-            private String _id;
-            private String title;
-            private String cat;
-            private String author;
-            private String cover;
-            private String lastChapter;
+            private String _id;   //书籍id
+            private String title;  //书籍名
+            private String cat;    //书籍类别
+            private String author;  //作者
+            private String cover;   //书籍封面
+            private String lastChapter;   //最近更新的章节
 
             public String get_id() {
                 return _id;

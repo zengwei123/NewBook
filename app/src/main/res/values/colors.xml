@@ -5,4 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="textColor">#858585</color>
     <color name="bookColor">#6E6E6E</color>
+    <color name="detaillbook_but">#3AAFC2</color>
+    <color name="detaillbook_author">#E03636</color>
+    <color name="bookbackground">#ACE1AF</color>
 </resources>
