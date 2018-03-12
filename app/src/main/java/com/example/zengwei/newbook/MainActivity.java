@@ -107,33 +107,30 @@ public class MainActivity extends AppCompatActivity {
         loupe_edit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                    String bookname=loupe_edit.getText().toString();
-                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(name.getWindowToken(), 0);
-                    Intent resultIntent = new Intent(MainActivity.this, SearchActivity.class);
-                    resultIntent.putExtra("bookname",bookname);
-                    startActivity(resultIntent);
-//                    try {
-//
-//                        NetworkRequestUtil.sendRequestWithOkHttp("http://novel.juhe.im/search?keyword="+bookname,
-//                                new NetworkRequestUtilListener() {
-//                                    @Override
-//                                    public void getJsonString(String str) {
-//
-//
-////                                        List<Search> searcnList=JsonUtil.jsonJX(str);
-////                                        for(Search s:searcnList){
-////                                            Log.d("zeng",s.toString());
-////                                        }
-//                                    }
-//                                });
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
+                String bookname=loupe_edit.getText().toString();
+                String url="http://novel.juhe.im/search?keyword="+bookname;
+                try {
+                    NetworkRequestUtil.sendRequestWithOkHttp(url, new NetworkRequestUtilListener() {
+                        @Override
+                        public void getJsonString(String str) {
+                            Intent resultIntent = new Intent(MainActivity.this, SearchActivity.class);
+                            resultIntent.putExtra("JSON",str);
+                            startActivity(resultIntent);
+                        }
+
+                        @Override
+                        public void getJsonImage(Response response) {
+
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 return false;
             }
 
         });
+
 
         mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
             @Override
@@ -217,6 +214,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     /**
      * 一些类的初始化
      */
@@ -266,22 +264,6 @@ public class MainActivity extends AppCompatActivity {
         rvsb.setLayoutManager(new LinearLayoutManager(this));
         //添加适配器
         rvsb.setAdapter(myRecycler);
-//        animation.setAnimationListener(new Animation.AnimationListener() {
-//            @Override
-//            public void onAnimationStart(Animation animation) {
-//
-//            }
-//
-//            @Override
-//            public void onAnimationEnd(Animation animation) {
-//                loupe.setVisibility(View.GONE);
-//                loupe_edit.setVisibility(View.VISIBLE);
-//            }
-//
-//            @Override
-//            public void onAnimationRepeat(Animation animation) {
-//            }
-//        });
     }
 
 

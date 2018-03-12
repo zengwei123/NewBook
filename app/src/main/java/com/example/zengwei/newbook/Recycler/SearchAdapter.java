@@ -1,6 +1,7 @@
 package com.example.zengwei.newbook.Recycler;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.zengwei.newbook.JSONModel.Search;
 import com.example.zengwei.newbook.R;
+import com.example.zengwei.newbook.Util.UrlDecode;
 
 import java.util.List;
 
@@ -19,7 +21,7 @@ import java.util.List;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
 
-    private List<Search>searches;
+    private List<Search> searches;
 
     public SearchAdapter(List<Search> resultsBeans){
         searches = resultsBeans;
@@ -33,12 +35,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-//        Glide
-//                .with(holder.cover.getContext())
-//                .load(searches.get(position).getCover())
-//                .into(holder.cover);
-
-
+        String covers=UrlDecode.getURLDecoderString(searches.get(position).getCover());
+        Glide.with(holder.cover.getContext())
+                .load(covers.substring(7,covers.length())).into(holder.cover);
         Search search = searches.get(position);
         holder.title.setText(search.getTitle());
         holder.author.setText(search.getAuthor());
@@ -60,6 +59,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
          * author :作者
          * cat :书籍类别
          */
+
         ImageView cover;
         TextView title;
         TextView author;
